@@ -2,14 +2,17 @@
  * @description 记账页
  * */
 
-import type {NextPage} from 'next';
 import styles from '../styles/Home.module.css';
+import type {NextPage} from 'next';
+import Layout from '../components/layout';
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
-      记账页
-    </div>
+    <Layout>
+      <div className={styles.container}>
+        记账页
+      </div>
+    </Layout>
   );
 }
 

@@ -1,0 +1,31 @@
+.container {
+  height: 100vh;
+
+  main {
+    height: 90%;
+  }
+
+  footer {
+    height: 10%;
+    padding: 0 2rem;
+    border-top: solid 1px #cccccd;
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+
+      .item {
+        display: flex;
+        flex-direction: column;
+
+        a {
+          font-size: 0.8rem;
+
+          &.active {color: #f3cc2f;}
+        }
+      }
+    }
+  }
+}

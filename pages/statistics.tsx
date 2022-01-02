@@ -3,12 +3,15 @@
  * */
 
 import {NextPage} from 'next';
+import Layout from '../components/layout';
 
 const Statistics: NextPage = () => {
   return (
-    <div>
-      统计页
-    </div>
+    <Layout>
+      <div>
+        统计页
+      </div>
+    </Layout>
   )
 }
 
