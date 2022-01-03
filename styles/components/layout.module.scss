@@ -21,11 +21,16 @@
       .item {
         display: flex;
         flex-direction: column;
+        align-items: center;
 
-        a {
-          font-size: 0.8rem;
+        .icon {font-size: 1.2rem;}
 
-          &.active {color: #f3cc2f;}
+        a {font-size: 0.8rem;margin-top: 4px}
+
+        &.active {
+          .icon {color: #f3cc2f}
+
+          a {color: #f3cc2f}
         }
       }
     }

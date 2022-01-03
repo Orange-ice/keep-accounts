@@ -1,23 +1,20 @@
-/**
- * @description 布局组件
- * */
-
-import styles from '../styles/components/Layout.module.scss';
-import {NextComponentType} from 'next';
+import React from 'react';
+import styles from '../styles/components/layout.module.scss';
 import Link from 'next/link';
-import Image from 'next/image';
 import {useRouter} from 'next/router';
+import Icon from './icon';
+import cs from 'classnames';
 
 interface LayoutProps {}
 
-const Layout: NextComponentType = (props) => {
+const Layout: React.FC = (props) => {
   const {children} = props;
   const router = useRouter();
 
   const navConfig = [
-    {label: '记账', url: '/', icon: '/layout/money.png'},
-    {label: '统计', url: '/statistics', icon: '/layout/statistics.png'},
-    {label: '我的', url: '/personal', icon: '/layout/personal.png'}
+    {label: '记账', url: '/', icon: 'zhangdan'},
+    {label: '统计', url: '/statistics', icon: 'statistics'},
+    {label: '我的', url: '/personal', icon: 'personal'}
   ];
 
   return (
@@ -29,11 +26,9 @@ const Layout: NextComponentType = (props) => {
       <footer>
         <nav>
           {navConfig.map(item => (
-            <div key={item.url} className={styles.item}>
-              <Image src={item.icon} width={24} height={24}/>
-              <Link href={item.url}>
-                <a className={router.pathname === item.url ? styles.active : undefined}>{item.label}</a>
-              </Link>
+            <div key={item.url} className={cs(styles.item, {[styles.active]: router.pathname === item.url})}>
+              <Icon name={item.icon} className={styles.icon}/>
+              <Link href={item.url}><a>{item.label}</a></Link>
             </div>
           ))}
         </nav>
