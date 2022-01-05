@@ -1,0 +1,11 @@
+### 注册用户
+
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+  "username": "burt",
+  "password": "123456"
+}
+
+###
