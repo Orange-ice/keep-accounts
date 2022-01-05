@@ -32,3 +32,23 @@ collation-server = utf8_general_ci
 4. 重启容器并检查编码 `show variables like '%char%';`
 
 5. 创建数据库 `development/test/production`
+
+## Set up Prisma
+
+1. create Prisma schema
+
+```bash
+npx prisma init
+```
+
+2. using prisma migrate
+
+```bash
+yarn add yarn add @prisma/client
+npx prisma migrate dev --name init
+
+# reset database
+npx prisma migrate reset
+```
+
+> Whenever you make changes to your Prisma schema in the future, you manually need to invoke `prisma generate` in order to accommodate the changes in your Prisma Client API.
