@@ -16,4 +16,29 @@ model User {
   username  String   @unique @db.VarChar(16)
   password  String   @db.VarChar(256)
   avatar    String?
+  Tag       Tag[]
+  Record    Record[]
+}
+
+model Tag {
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(8)
+  icon   String   @db.VarChar(32)
+  user   User     @relation(fields: [userId], references: [id])
+  userId Int
+  Record Record[]
+  // 类型（收入【1】/支出【0】）
+  type   Int
+}
+
+model Record {
+  id        Int      @id @default(autoincrement())
+  content   String?
+  amount    Int
+  tag       Tag      @relation(fields: [tagId], references: [id])
+  tagId     Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
