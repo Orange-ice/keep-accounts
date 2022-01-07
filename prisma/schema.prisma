@@ -34,7 +34,7 @@ model Tag {
 model Record {
   id        Int      @id @default(autoincrement())
   content   String?
-  amount    Int
+  amount    String   @db.VarChar(8)
   tag       Tag      @relation(fields: [tagId], references: [id])
   tagId     Int      @unique
   user      User     @relation(fields: [userId], references: [id])

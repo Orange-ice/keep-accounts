@@ -1,3 +1,15 @@
+### 新增记录
+
+POST http://localhost:3000/api/v1/record
+Content-Type: application/json
+
+{
+  "content": "中百超市买老干妈",
+  "amount": "9.8",
+  "tagId": 1
+}
+
+
 ### 获取标签
 
 GET http://localhost:3000/api/v1/tag?name=红包
@@ -24,9 +36,9 @@ POST http://localhost:3000/api/v1/tag
 Content-Type: application/json
 
 {
-  "name": "红包",
-  "icon": "redEnvelope",
-  "type": 1
+  "name": "餐饮",
+  "icon": "repast",
+  "type": 0
 }
 
 
