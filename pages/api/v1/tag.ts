@@ -1,7 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import withSessionApi from '../../../lib/withSessionApi';
 import {PrismaClient} from '@prisma/client';
-import {object} from 'prop-types';
 
 const prisma = new PrismaClient();
 
@@ -17,6 +16,10 @@ interface Params {
 }
 
 async function createTag(req: NextApiRequest, res: NextApiResponse) {
+    if (!req.session.user) {
+        res.status(401).json({message: '未登录'});
+        return;
+    }
     switch (req.method) {
         case 'POST':
             const {name, icon, type} = req.body as Tag;
@@ -25,7 +28,7 @@ async function createTag(req: NextApiRequest, res: NextApiResponse) {
             if (tag) return res.status(422).json({message: `${name}标签已存在`});
 
             const newTag = await prisma.tag.create({
-                data: {name, icon, type, userId: req.session.user!.id}
+                data: {name, icon, type, userId: req.session.user.id}
             });
             res.json(newTag);
             break;
@@ -37,8 +40,8 @@ async function createTag(req: NextApiRequest, res: NextApiResponse) {
                 where: params.id ? {
                     name: params.name,
                     id: Number(params.id),
-                    userId: req.session.user!.id
-                } : {name: params.name, userId: req.session.user!.id}
+                    userId: req.session.user.id
+                } : {name: params.name, userId: req.session.user.id}
             });
             res.json(tags);
             break;

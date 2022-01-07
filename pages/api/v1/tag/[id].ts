@@ -5,6 +5,10 @@ import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
 
 const tagHandle: NextApiHandler = async (req, res) => {
+    if (!req.session.user) {
+        res.status(401).json({message: '未登录'});
+        return;
+    }
     const {name, icon, type} = req.body;
     const tag = await prisma.tag.findUnique({where: {id: parseInt(req.query.id as string)}});
     if (!tag) return res.status(422).json({message: `标签不存在`});
