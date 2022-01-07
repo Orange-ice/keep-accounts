@@ -1,4 +1,4 @@
-import {withIronSessionApiRoute} from 'iron-session/next/index';
+import {withIronSessionApiRoute} from 'iron-session/next';
 import {NextApiHandler} from 'next';
 
 export default function withSessionApi(handler: NextApiHandler) {

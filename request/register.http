@@ -1,11 +1,24 @@
-### 注册用户
+### 用户注销
 
-POST http://localhost:3000/api/register
+POST http://localhost:3000/api/v1/user/logout
+Content-Type: application/json
+
+### 用户登录
+
+POST http://localhost:3000/api/v1/user/login
 Content-Type: application/json
 
 {
-  "username": "ccing",
+  "username": "cheng",
   "password": "123456"
 }
 
-###
+### 注册用户
+
+POST http://localhost:3000/api/v1/user/register
+Content-Type: application/json
+
+{
+  "username": "cheng",
+  "password": "123456"
+}

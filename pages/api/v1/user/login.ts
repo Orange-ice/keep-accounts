@@ -1,4 +1,4 @@
-import withSessionApi from '../../lib/withSessionApi';
+import withSessionApi from '../../../../lib/withSessionApi';
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {PrismaClient} from '@prisma/client';
 import sha256 from 'crypto-js/sha256';
