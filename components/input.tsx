@@ -14,8 +14,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = (props) => {
   const {error, className, prefixIcon, ...rest} = props;
   return (
-    <div className={styles.box}>
-      <div className={cs(styles.container, className)}>
+    <div className={cs(styles.box, className)}>
+      <div className={cs(styles.container)}>
         {prefixIcon && <Icon name={prefixIcon} className={styles.icon}/>}
         <input {...rest}/>
       </div>
