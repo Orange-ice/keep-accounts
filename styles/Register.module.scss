@@ -1,0 +1,35 @@
+.container {
+  height: 100vh;
+  background: #ffd453;
+  padding: 3rem 1.5rem 0;
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #323232;
+
+    .logo {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  main {
+    margin-top: 1.5rem;
+    background: #fff;
+    height: 13rem;
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+
+    .input {
+      width: 15rem;
+
+      &:first-child {margin-bottom: 1rem;}
+    }
+  }
+}
