@@ -3,6 +3,7 @@ import {NextPage} from 'next';
 import Icon from '../components/icon';
 import Input from '../components/input';
 import React from 'react';
+import Link from 'next/link';
 
 const Register: NextPage = () => {
   const [registerData, setRegisterData] = React.useState({username: '', password: ''});
@@ -38,6 +39,12 @@ const Register: NextPage = () => {
           />
         </div>
       </main>
+      <div className={styles.button}>
+        <button>注册</button>
+      </div>
+      <footer>
+        <p className={styles.tip}>没有账号？<Link href="/login"><a>点击注册</a></Link></p>
+      </footer>
     </div>
   );
 };
