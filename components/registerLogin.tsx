@@ -3,15 +3,18 @@ import Icon from '../components/icon';
 import Input from '../components/input';
 import React from 'react';
 import Link from 'next/link';
+import axios from 'axios';
+import {useRouter} from 'next/router';
 
 interface Props {
   type: 'login' | 'register';
-  request: (data: { username: string, password: string }) => void;
+  requestUrl: string;
 }
 
 const RegisterLogin: React.FC<Props> = (props) => {
-  const {type, request} = props;
-  const [registerData, setRegisterData] = React.useState({username: '', password: ''});
+  const {type, requestUrl} = props;
+  const router = useRouter();
+  const [formData, setFormData] = React.useState({username: '', password: ''});
   const [error, setError] = React.useState({
     username: {status: false, message: ''},
     password: {status: false, message: ''}
@@ -24,8 +27,8 @@ const RegisterLogin: React.FC<Props> = (props) => {
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'username' | 'password') => {
-    setRegisterData({
-      ...registerData,
+    setFormData({
+      ...formData,
       [type]: e.target.value
     });
   };
@@ -35,11 +38,11 @@ const RegisterLogin: React.FC<Props> = (props) => {
    * @return flag true表示有err
    * */
   const validate = () => {
-    if (registerData.username.length < 2) {
+    if (formData.username.length < 2) {
       setError({...error, username: {status: true, message: '用户名长度最少为2'}});
       return true;
     }
-    if (registerData.password.length < 6) {
+    if (formData.password.length < 6) {
       setError({...error, password: {status: true, message: '密码长度最少为6'}});
       return true;
     }
@@ -48,6 +51,10 @@ const RegisterLogin: React.FC<Props> = (props) => {
   const onSubmit = () => {
     const hasErr = validate();
     if (hasErr) return;
+    axios.post(requestUrl, formData).then(() => {
+      window.alert(type === 'register' ? '注册成功' : '登录成功');
+      router.push(type === 'register' ? '/login' : '/');
+    });
   };
 
 
@@ -65,7 +72,7 @@ const RegisterLogin: React.FC<Props> = (props) => {
             prefixIcon="user"
             maxLength={8}
             error={error.username}
-            value={registerData.username}
+            value={formData.username}
             onChange={(e) => {onChange(e, 'username');}}/>
           <Input
             className={styles.input}
@@ -73,7 +80,7 @@ const RegisterLogin: React.FC<Props> = (props) => {
             maxLength={16}
             prefixIcon="password"
             error={error.password}
-            value={registerData.password}
+            value={formData.password}
             type="password"
             onChange={(e) => {onChange(e, 'password');}}
           />

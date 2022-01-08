@@ -3,11 +3,8 @@ import React from 'react';
 import RegisterLogin from '../components/registerLogin';
 
 const Login: NextPage = () => {
-  const request = (data: { username: string, password: string }) => {
-
-  };
   return (
-    <RegisterLogin type={'login'} request={request}/>
+    <RegisterLogin type={'login'} requestUrl="/api/v1/user/login"/>
   );
 };
 
