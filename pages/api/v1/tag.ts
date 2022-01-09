@@ -15,7 +15,7 @@ interface Params {
     id?: string;
 }
 
-async function createTag(req: NextApiRequest, res: NextApiResponse) {
+async function tagHandle(req: NextApiRequest, res: NextApiResponse) {
     if (!req.session.user) {
         res.status(401).json({message: '未登录'});
         return;
@@ -33,7 +33,6 @@ async function createTag(req: NextApiRequest, res: NextApiResponse) {
             res.json(newTag);
             break;
         case 'GET':
-            console.log(req.query);
             const params: Params = req.query;
 
             const tags = await prisma.tag.findMany({
@@ -50,4 +49,4 @@ async function createTag(req: NextApiRequest, res: NextApiResponse) {
     }
 }
 
-export default withSessionApi(createTag);
+export default withSessionApi(tagHandle);

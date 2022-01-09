@@ -7,13 +7,14 @@ type IconProps = {
   name: string
 } & React.SVGAttributes<SVGElement>
 
+const url = '//at.alicdn.com/t/font_2565081_p00af1c29be.js';
 
 const Icon: React.FC<IconProps> = (props) => {
   const {name, className, children, ...rest} = props;
   const classnames = cs(styles.icon, className);
   return (
     <>
-      <Script src={process.env.ICONFONT}/>
+      <Script src={url}/>
       <svg className={classnames} {...rest}>
         <use xlinkHref={`#icon-${name}`}/>
       </svg>

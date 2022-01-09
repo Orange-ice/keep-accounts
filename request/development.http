@@ -25,9 +25,9 @@ PATCH http://localhost:3000/api/v1/tag/3
 Content-Type: application/json
 
 {
-  "name": "红包",
-  "icon": "red",
-  "type": 1
+  "name": "购物消费",
+  "icon": "shopping",
+  "type": 0
 }
 
 ### 新建标签
@@ -36,8 +36,8 @@ POST http://localhost:3000/api/v1/tag
 Content-Type: application/json
 
 {
-  "name": "餐饮",
-  "icon": "repast",
+  "name": "请客",
+  "icon": "eating",
   "type": 0
 }
 
