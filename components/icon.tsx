@@ -13,7 +13,7 @@ const Icon: React.FC<IconProps> = (props) => {
   const classnames = cs(styles.icon, className);
   return (
     <>
-      <Script src="//at.alicdn.com/t/font_2565081_8o64u9u84lu.js"/>
+      <Script src="//at.alicdn.com/t/font_2565081_alre73xthn6.js"/>
       <svg className={classnames} {...rest}>
         <use xlinkHref={`#icon-${name}`}/>
       </svg>

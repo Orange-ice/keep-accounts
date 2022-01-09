@@ -1,0 +1,68 @@
+.container {
+  .statistic {
+    margin: 1.5rem 1rem 0;
+    background: #fff;
+    padding: 2rem 1rem;
+    border-radius: 0.5rem;
+
+    .total {
+      display: flex;
+      flex-direction: column;
+      font-size: small;
+
+      > span:last-child {
+        font-weight: 600;
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+      }
+    }
+
+    .consume {
+      margin-top: 1rem;
+      display: flex;
+      font-size: smaller;
+
+      .expend, .income {
+
+        span:first-child {
+          background: #ccc;
+          border-radius: 0.8rem;
+          padding: 0.2rem 0.4rem;
+          margin-right: 0.5rem;
+          color: #fff;
+        }
+      }
+
+      .expend {
+        margin-left: 0.8rem;
+
+        span:first-child {
+          background: #ffccc7;
+        }
+      }
+
+      .income {
+        margin-right: 0.8rem;
+
+        span:first-child {
+          background: #b7eb8f;
+        }
+      }
+    }
+  }
+
+  .add {
+    position: fixed;
+    bottom: 6rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: #fff;
+    background: #ffd453;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
