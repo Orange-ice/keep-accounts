@@ -5,6 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import {useRouter} from 'next/router';
+import {alert} from './message';
 
 interface Props {
   type: 'login' | 'register';
@@ -52,7 +53,7 @@ const RegisterLogin: React.FC<Props> = (props) => {
     const hasErr = validate();
     if (hasErr) return;
     axios.post(requestUrl, formData).then(() => {
-      window.alert(type === 'register' ? '注册成功' : '登录成功');
+      alert(type === 'register' ? '注册成功' : '登录成功');
       router.push(type === 'register' ? '/login' : '/');
     });
   };

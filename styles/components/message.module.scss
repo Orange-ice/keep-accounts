@@ -1,0 +1,25 @@
+.container {
+  position: fixed;
+  top: 5%;
+  border: solid 1px #91d5ff;
+  background: #e6f7ff;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  font-size: small;
+
+  &.success {
+    border-color: #b7eb8f;
+    background: #f6ffed;
+  }
+
+  &.warning {
+    border-color: #ffe58f;
+    background: #fffbe6;
+  }
+
+  &.error {
+    border-color: #ffccc7;
+    background: #fff2f0;
+  }
+}
