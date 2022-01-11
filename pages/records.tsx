@@ -28,7 +28,9 @@ const colors: { [K: string]: string } = {
   'education': '#719c66',
   'amusement': '#7051ed',
   'house': '#767ffe',
-  'gift': '#faab73'
+  'gift': '#faab73',
+  'salary': '#716857',
+  'bonus': '#ff754a',
 };
 
 const Records: NextPage = () => {

@@ -7,7 +7,7 @@ type IconProps = {
   name: string
 } & React.SVGAttributes<SVGElement>
 
-const url = '//at.alicdn.com/t/font_2565081_p00af1c29be.js';
+const url = '//at.alicdn.com/t/font_2565081_nxyhtbtq3hi.js';
 
 const Icon: React.FC<IconProps> = (props) => {
   const {name, className, children, ...rest} = props;
