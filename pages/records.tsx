@@ -9,6 +9,7 @@ import styles from '../styles/Records.module.scss';
 import React from 'react';
 import axios from 'axios';
 import cs from 'classnames';
+import {alert} from '../components/message';
 
 interface Tag {
   id: number;
@@ -17,7 +18,7 @@ interface Tag {
   type: 1 | 0;
 }
 
-const keyboard = [7, 8, 9, 'delete', 4, 5, 6, '+', 1, 2, 3, '-', '.', 0, '再记', '完成'];
+const keyboard = ['7', '8', '9', 'delete', '4', '5', '6', '+', '1', '2', '3', '-', '.', '0', '再记', '完成'];
 const colors: { [K: string]: string } = {
   'eating': '#ffa62a',
   'living': '#67c9d2',
@@ -38,6 +39,7 @@ const Records: NextPage = () => {
   const [selectedType, setSelectedType] = React.useState<1 | 0>(0);
   const [tags, setTags] = React.useState<Tag[]>([]);
   const [selectTag, setSelectTag] = React.useState<Tag | null>(null);
+  const [amount, setAmount] = React.useState('0');
 
   React.useEffect(() => {
     getTags();
@@ -67,6 +69,62 @@ const Records: NextPage = () => {
     setSelectTag(tag);
   };
 
+  const onKeyboardClick = (item: string) => {
+    /**
+     * @description 加减操作
+     * @param type 加/减
+     * @param source 源数据
+     * @return result 更新后的源数据
+     * */
+    function modified(type: '+' | '-', source: string) {
+      let result = '';
+      if (source.indexOf('+') === -1 && source.indexOf('-') === -1) {
+        result = source + type;
+      } else {
+        const exist = source.indexOf('+') === -1 ? '-' : '+';
+        // [8+8] amount已包含加号，先求当前的和再加上+
+        result = source.split(exist).reduce((previousValue, currentValue) => {
+          return parseFloat(previousValue) + parseFloat(`${exist}${currentValue}`) + type;
+        });
+      }
+      return result;
+    }
+
+    let newAmount = '';
+    switch (item) {
+      case 'delete':
+        newAmount = amount.length === 1 ? '0' : amount.slice(0, -1);
+        break;
+      case '+':
+        newAmount = modified('+', amount);
+        break;
+      case '-':
+        newAmount = modified('-', amount);
+        break;
+      case '完成':
+        submit();
+        newAmount = '0';
+        break;
+      default:
+        newAmount = amount === '0' ? item : amount + item;
+    }
+    if (newAmount.length === 10) return;
+    setAmount(newAmount);
+  };
+
+  const submit = () => {
+    if (!selectTag) return;
+    const postData = {
+      tagId: selectTag.id,
+      amount,
+      content: '---'
+    };
+    axios.post('/api/v1/record', postData).then(() => {
+      alert('账单已添加');
+      router.push('/');
+    });
+  };
+
   return (
     <div className={styles.container}>
       {/* tab */}
@@ -83,7 +141,7 @@ const Records: NextPage = () => {
       <div className={styles.amount} style={{backgroundColor: colors[selectTag?.icon || '']}}>
         <Icon name={selectTag?.icon || 'laohu'} className={styles.icon}/>
         <span>{selectTag?.name}</span>
-        <span className={styles.number}>256</span>
+        <span className={styles.number}>{amount}</span>
       </div>
 
       {/* 标签 */}
@@ -106,7 +164,9 @@ const Records: NextPage = () => {
         {/* 键盘 */}
         <div className={styles.keyboardWrapper}>
           {keyboard.map(item => <div key={item} className={styles.keyboardItem}
-                                     style={{backgroundColor: item === '完成' ? '#ffd551' : '#fff'}}>
+                                     style={{backgroundColor: item === '完成' ? '#ffd551' : '#fff'}}
+                                     onClick={() => {onKeyboardClick(item);}}
+          >
             {item === 'delete' ? <Icon key="delete" name="delete"/> : item}
           </div>)}
         </div>
