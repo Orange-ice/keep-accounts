@@ -51,6 +51,43 @@
     }
   }
 
+  .records {
+    margin: 2rem 1rem 0;
+
+    header {
+      font-size: smaller;
+      color: #78797c;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5rem;
+    }
+
+    .details {
+      background: #ffffff;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+
+      .iconBox {
+        width: 2.8rem;
+        height: 2.8rem;
+        border-radius: 0.8rem;
+        background: #e6e6e6;
+        font-size: 1.6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+      }
+
+      .tagName {
+        margin-left: 1rem;
+        margin-right: auto;
+      }
+    }
+  }
+
   .add {
     position: fixed;
     bottom: 6rem;

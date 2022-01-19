@@ -10,6 +10,7 @@ import React from 'react';
 import axios from 'axios';
 import cs from 'classnames';
 import {alert} from '../components/message';
+import {colors} from '../lib/custom.config';
 
 interface Tag {
   id: number;
@@ -19,20 +20,7 @@ interface Tag {
 }
 
 const keyboard = ['7', '8', '9', 'delete', '4', '5', '6', '+', '1', '2', '3', '-', '.', '0', '再记', '完成'];
-const colors: { [K: string]: string } = {
-  'eating': '#ffa62a',
-  'living': '#67c9d2',
-  'shopping': '#ff9390',
-  'snacks': '#fcc92d',
-  'traffic': '#373e50',
-  'medical': '#fda2b4',
-  'education': '#719c66',
-  'amusement': '#7051ed',
-  'house': '#767ffe',
-  'gift': '#faab73',
-  'salary': '#716857',
-  'bonus': '#ff754a',
-};
+
 
 const Records: NextPage = () => {
   const router = useRouter();
