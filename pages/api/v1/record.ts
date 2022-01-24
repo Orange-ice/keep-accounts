@@ -30,6 +30,17 @@ const recordHandle: NextApiHandler = async (req, res) => {
       });
       res.json(record);
       break;
+    case 'GET':
+      // 获取所有record
+      const records = await prisma.record.findMany({
+        where: {userId: req.session.user.id},
+        include: {tag: true},
+        orderBy: [
+          {createdAt: 'desc'}
+        ]
+      });
+      res.json(records);
+      break;
   }
 };
 
