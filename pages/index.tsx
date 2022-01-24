@@ -9,11 +9,19 @@ import Icon from '../components/icon';
 import {useRouter} from 'next/router';
 import React from 'react';
 import axios from 'axios';
+import {colors, weeksMap} from '../lib/custom.config';
+import dayjs from 'dayjs';
+import isToday from 'dayjs/plugin/isToday';
+import isYesterday from 'dayjs/plugin/isYesterday';
+
+dayjs.extend(isToday);
+dayjs.extend(isYesterday);
 
 
 interface Tag {
   icon: string;
   name: string;
+  type: 1 | 0;
 }
 
 interface Record {
@@ -38,6 +46,20 @@ const Home: NextPage = () => {
     axios.get('/api/v1/record').then(res => {
       setRecords(res.data);
     });
+  };
+
+  const formatDate = (date: string) => {
+    let week = weeksMap[dayjs(date).day()];
+    if (dayjs(date).isToday()) week = '今天';
+    if (dayjs(date).isYesterday()) week = '昨天';
+
+    let formattedDate = '';
+    if (dayjs().isSame(date, 'year')) {
+      formattedDate = `${dayjs(date).format('MM月DD日')} ${week}`;
+    } else {
+      formattedDate = `${dayjs(date).format('YYYY/MM/DD')} ${week}`;
+    }
+    return formattedDate;
   };
 
   React.useEffect(() => {
@@ -67,20 +89,19 @@ const Home: NextPage = () => {
         </div>
 
         {/* 账单 */}
-        <div className={styles.records}>
+        {records.map((item, index) => <div key={item.id} className={styles.records}>
           <header>
-            <span>01月19日 今天</span>
-            <span>支出99</span>
+            <span>{formatDate(item.createdAt)}</span>
+            {/*<span>{item.tag.type ? '收入' : '支出'}{item.amount}</span>*/}
           </header>
           <div className={styles.details}>
-            <div className={styles.iconBox}>
-              <Icon name="eating"/>
+            <div className={styles.iconBox} style={{backgroundColor: colors[item.tag.icon]}}>
+              <Icon name={item.tag.icon}/>
             </div>
-            <span className={styles.tagName}>餐饮日常</span>
-            <span>-9</span>
+            <span className={styles.tagName}>{item.tag.name}</span>
+            <span>{item.tag.type ? '+' : '-'}{item.amount}</span>
           </div>
-        </div>
-
+        </div>)}
 
         <div className={styles.add} onClick={addRecords}>
           <Icon name="tianjia"/>

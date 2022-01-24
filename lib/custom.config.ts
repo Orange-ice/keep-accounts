@@ -13,3 +13,14 @@ export const colors: { [K: string]: string } = {
   'salary': '#716857',
   'bonus': '#ff754a',
 };
+
+// weeks setting
+export const weeksMap: { [K: number]: string } = {
+  1: '周一',
+  2: '周二',
+  3: '周三',
+  4: '周四',
+  5: '周五',
+  6: '周六',
+  0: '周日',
+};
