@@ -1,0 +1,48 @@
+.header {
+  margin-top: .6rem;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 1rem 0 1rem;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    .username {
+      font-weight: 600;
+    }
+
+    .saying {
+      font-size: small;
+      color: #78797c;
+
+      strong {
+        color: #ffc831;
+        font-size: 1.5rem;
+        margin: 0 .2rem;
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+
+  .logout {
+    margin-top: 2rem;
+    font-weight: 600;
+    color: #151419;
+    border-radius: .3rem;
+    text-align: center;
+    width: 10rem;
+    height: 2rem;
+    background: #fff;
+  }
+}
+
